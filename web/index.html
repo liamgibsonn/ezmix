@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EZMix - Transition Planner</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- app.js is an ES module: it imports the other .js files itself. -->
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <!-- Everything in here stays pinned to the top while the library scrolls -->
+  <div class="pinned">
+    <header class="topbar">
+      <h1>EZMix</h1>
+
+      <!-- Plan controls: name, save, open, new, delete -->
+      <div class="planbar">
+        <input id="plan-name" class="plan-name" type="text" aria-label="Set name" maxlength="120">
+        <button id="save-btn" type="button" class="primary" title="Save (Ctrl+S)">Save</button>
+        <select id="open-select" aria-label="Open a saved set">
+          <option value="">Open…</option>
+        </select>
+        <button id="new-btn" type="button">New</button>
+        <button id="delete-btn" type="button" title="Move this set to plans/.trash">Delete</button>
+        <button id="sheet-btn" type="button" title="Bar-by-bar instructions for playing this set (saves it first)">Cheat sheet</button>
+        <span id="save-status" class="muted"></span>
+      </div>
+
+      <span id="library-status" class="muted">Loading library…</span>
+      <button id="reload-btn" type="button" title="Re-read the Rekordbox library (after analysing or adding tracks)">
+        Reload library
+      </button>
+    </header>
+
+    <!-- The set timeline; built by timeline.js -->
+    <section id="timeline" aria-label="Set timeline"></section>
+  </div>
+
+  <main>
+    <section class="toolbar">
+      <input id="search" type="search" placeholder="Search title or artist…" autocomplete="off">
+      <!-- Which sections to show: our EDM detection, Rekordbox's analysis, or your own
+           Custom ones (made with "✎ Edit" on a track; blank until you add some) -->
+      <div class="seg-toggle" role="radiogroup" aria-label="Phrase analysis">
+        <span class="muted">Phrases:</span>
+        <label><input type="radio" name="phrase-source" value="detected"> Auto (EDM)</label>
+        <label><input type="radio" name="phrase-source" value="rekordbox"> Rekordbox</label>
+        <label><input type="radio" name="phrase-source" value="custom"> Custom</label>
+      </div>
+      <label class="check">
+        <input id="show-all" type="checkbox">
+        Show tracks without a beatgrid
+      </label>
+      <span class="muted hint">Right-click a section to listen · hold right-click to jump to a spot · click to add · drag onto a lane · ✎ Edit changes a track's sections</span>
+      <!-- Colour key for the phrase strips; built by app.js from PHRASE_KINDS -->
+      <div id="legend" class="legend" aria-label="Phrase colours"></div>
+    </section>
+
+    <!-- Error box, hidden unless something goes wrong -->
+    <div id="error" class="error" hidden></div>
+
+    <!-- One .track card per track is added here by app.js -->
+    <ol id="track-list" class="track-list"></ol>
+  </main>
+
+  <!-- Floating tooltip shown when hovering a phrase strip -->
+  <div id="tooltip" class="tooltip" hidden></div>
+</body>
+</html>

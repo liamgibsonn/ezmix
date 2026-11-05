@@ -1,0 +1,14 @@
+# Runtime
+pyrekordbox>=0.4.4      # reads Rekordbox's master.db + ANLZ analysis files
+fastapi>=0.143          # web API
+uvicorn>=0.54           # web server that runs the API
+
+# Optional: stem analysis (drums / bass / synths / vocals per bar) for the mixing
+# checks. Big download (~1-2 GB). Without it everything works, minus the vocal-clash
+# check and stem-based bass-swap timing. Install the CPU build of PyTorch with:
+#   .\.venv\Scripts\python -m pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+#   .\.venv\Scripts\python -m pip install demucs
+
+# Tests
+pytest>=9.1
+httpx2>=2.13            # used by FastAPI's TestClient

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cheat Sheet</title>
+  <!-- style.css provides the colour tokens; cheatsheet.css the layout for this page -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cheatsheet.css">
+  <script type="module" src="cheatsheet.js"></script>
+</head>
+<body class="sheet-page">
+  <header class="sheet-head">
+    <div>
+      <h1 id="sheet-name">Cheat sheet</h1>
+      <p id="sheet-meta" class="muted"></p>
+    </div>
+    <div class="sheet-buttons">
+      <a id="txt-link" class="button" href="#" download>Download .txt</a>
+      <button id="print-btn" type="button">Print</button>
+      <button id="reset-btn" type="button" title="Clear the ticks">Clear ticks</button>
+      <a class="button" href="/">Planner</a>
+    </div>
+  </header>
+
+  <main class="sheet-main">
+    <div id="error" class="error" hidden></div>
+
+    <section id="problems" hidden>
+      <h2>Problems</h2>
+      <ul id="problem-list" class="problem-list"></ul>
+    </section>
+
+    <section>
+      <h2>Tracks on each deck</h2>
+      <ul id="decks" class="deck-list"></ul>
+    </section>
+
+    <section>
+      <h2>Steps <span class="muted">(tap a step to tick it off)</span></h2>
+      <ol id="steps" class="steps"></ol>
+    </section>
+  </main>
+</body>
+</html>

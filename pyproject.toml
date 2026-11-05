@@ -1,0 +1,10 @@
+[project]
+name = "djplanner"
+version = "0.1.0"
+description = "Plan DJ sets section-by-section from a Rekordbox library"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+# Lets the tests `import djplanner` when run from the project folder.
+pythonpath = ["."]
+testpaths = ["tests"]

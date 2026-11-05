@@ -1,0 +1,23 @@
+.venv/
+.cache/
+__pycache__/
+.pytest_cache/
+*.pyc
+user_settings.json
+
+# Server log / editor / OS clutter
+*.log
+.vscode/
+.idea/
+.claude/settings.local.json
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Personal: your own tracks, folders and notes. Stay on this computer, never pushed.
+phrase_labels.json
+custom_phrases.json
+path_remaps.json
+plans/
+CLAUDE.md
+NEXT_TIME.md

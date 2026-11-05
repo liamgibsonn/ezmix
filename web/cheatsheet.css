@@ -1,0 +1,119 @@
+/*
+  Cheat sheet page. Big, high-contrast text so it can be read at a glance on a phone
+  or tablet next to the decks. Uses the colour tokens from style.css.
+*/
+
+:root {
+  --deck-1: #4fb3ff;
+  --deck-2: #ff9f43;
+  --deck-3: #5fd38d;
+  --deck-4: #c98bff;
+  --deck-5: #ff6b8a;
+  --deck-6: #f5d547;
+}
+
+.sheet-page { font-size: 16px; }
+
+.sheet-head {
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; justify-content: space-between;
+  padding: 16px; background: var(--surface); border-bottom: 1px solid var(--border);
+}
+.sheet-head h1 { margin: 0; font-size: 22px; }
+.sheet-head p { margin: 4px 0 0; }
+.sheet-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+/* link styled as a button: same size as the real buttons (tokens in style.css) */
+.button {
+  display: inline-flex; align-items: center; text-decoration: none; color: var(--text);
+  background: var(--surface-2); border: 1px solid var(--border);
+  height: var(--btn-h); padding: 0 12px; border-radius: var(--btn-radius);
+  font-size: var(--btn-font); line-height: 1;
+}
+.button:hover { border-color: var(--accent); }
+
+.sheet-main { max-width: 860px; margin: 0 auto; padding: 8px 16px 60px; }
+.sheet-main h2 { font-size: 15px; text-transform: uppercase; letter-spacing: 0.6px; margin: 22px 0 10px; }
+
+.problem-list { margin: 0; padding-left: 20px; }
+.problem-list .lvl-error { color: var(--danger); }
+.problem-list .lvl-warning { color: var(--warn); }
+
+/* ----- prep ----- */
+.prep { display: grid; gap: 10px; }
+.prep-track { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.prep-title { font-weight: 650; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.prep-cues { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.prep-cues label { display: flex; gap: 10px; align-items: center; cursor: pointer; }
+.prep-cues input { width: 20px; height: 20px; flex: none; }
+.cue-chip {
+  flex: none; min-width: 64px; text-align: center;
+  padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 13px;
+  background: var(--cue-hot); color: #111;
+}
+.cue-chip.memory { background: var(--cue-memory); color: #fff; }
+.cue-tag { font-size: 12px; color: var(--muted); }
+
+.deck-badge {
+  display: inline-block; padding: 1px 8px; border-radius: 10px;
+  font-size: 12.5px; font-weight: 700; color: #111;
+}
+.deck-1 { background: var(--deck-1); }
+.deck-2 { background: var(--deck-2); }
+.deck-3 { background: var(--deck-3); }
+.deck-4 { background: var(--deck-4); }
+.deck-5 { background: var(--deck-5); }
+.deck-6 { background: var(--deck-6); }
+
+/* ----- tracks on each deck ----- */
+.deck-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+/* same columns as a step (78px + the rest), so the deck badges line up with the steps' */
+.deck-row {
+  display: grid; grid-template-columns: 78px 1fr; gap: 12px; align-items: center;
+  padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border);
+  border-left: 5px solid var(--deck-color, var(--border));
+  background: color-mix(in srgb, var(--deck-color, var(--border)) 10%, var(--surface));
+}
+.deck-side { text-align: right; font-size: 13.5px; font-weight: 600; color: var(--muted); }
+.deck-body { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.deck-tracks { font-size: 16px; }
+
+/* ----- steps ----- */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.step {
+  display: grid; grid-template-columns: 78px 1fr; gap: 12px; align-items: center;
+  padding: 10px 12px; border-radius: 8px;
+  /* every step tinted in its deck's colour: they're all equally important (the user) */
+  background: color-mix(in srgb, var(--deck-color, var(--border)) 10%, var(--surface));
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--deck-color, var(--border));
+  /* all the same height, whether or not a step has a detail line (all equally important) */
+  min-height: 68px;
+  cursor: pointer; user-select: none;
+}
+.step-when { text-align: right; font-variant-numeric: tabular-nums; }
+.step-bar { font-size: 22px; font-weight: 750; line-height: 1.1; }
+.step-time { font-size: 12px; color: var(--muted); }
+.step-body { display: grid; gap: 3px; }
+/* the instruction: deck badge + a short, bold "what to do" */
+.step-main { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.step-text { font-size: 18px; font-weight: 650; }
+/* the details, small and quiet underneath */
+.step-detail { font-size: 13.5px; color: var(--muted); }
+.step.kind-render { border-color: var(--danger); }
+.step .awkward { color: var(--danger); font-size: 13px; font-weight: 600; }
+.step .busy { color: var(--warn); font-size: 13px; font-weight: 600; }
+.step.done { opacity: 0.4; }
+.step.done .step-text { text-decoration: line-through; }
+
+@media (max-width: 520px) {
+  .step, .deck-row { grid-template-columns: 62px 1fr; gap: 10px; }
+  .step-bar { font-size: 19px; }
+}
+
+/* Printing: white paper, no buttons */
+@media print {
+  .sheet-buttons { display: none; }
+  body, .sheet-head, .prep-track, .step { background: #fff !important; color: #000 !important; }
+  .step { break-inside: avoid; }
+  .step.done { opacity: 1; }
+  .step.done .step-text { text-decoration: none; }
+}

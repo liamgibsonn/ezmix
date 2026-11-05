@@ -1,0 +1,2 @@
+# Store text files with LF in the repo, convert to the OS default on checkout
+* text=auto
